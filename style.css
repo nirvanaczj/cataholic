@@ -1,0 +1,373 @@
+/* body{
+background-image:url('https://i.imgur.com/32tjIFl.jpg');
+background-repeat:no-repeat;
+background-size:cover;
+
+} */
+* {
+    font-family: "Indie Flower", cursive;
+}
+
+body {
+    background: #94A7AE;
+    overflow-x:hidden;
+}
+/* 
+::-webkit-scrollbar-track {
+border-radius: 10px;
+background-color: darkgray;
+}
+
+::-webkit-scrollbar-thumb {
+border-radius: 10px;
+background-color: rgba(85, 85, 85, 0.25);
+} */
+
+h1{
+    font-size:2.4vw;
+    color:#F7F7F7;
+    font-family: 'Luckiest Guy', cursive;
+    background:#94A7AE;
+}
+
+h4 {
+    color: lightgray;
+    margin-top: -15px;
+    font-size:1.0vw;
+    font-family: filicudi-striped, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+#hellno {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: black;
+    z-index: 1000;
+}
+
+#destroy {
+    position: fixed;
+    text-align: center;
+    top: 30%;
+    color: blue;
+    font-size: 6vw;
+    display: none;
+    font-family: "Press Start 2P", cursive;
+}
+
+.notification{
+    position:fixed;
+    text-align: center;
+    top: 45%;
+    left:-100vw;
+    color: #FCEAAE;
+    font-size: 3vw;
+    font-family: filicudi-striped, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.confirm{
+    position:fixed;
+    text-align: center;
+    top: 40%;
+    left:-110vw;
+    width:100%;
+    background:white;
+    border:5px black solid;
+    padding:20px;
+    color: #4073ff;
+    font-size: 3vw;
+    font-family: filicudi-solid, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    transition-property:opacity;
+    transition-duration:1s;
+}
+
+.confirmhell{
+    position:fixed;
+    text-align: center;
+    top: 40%;
+      left:-110vw;
+    width:100%;
+    background:white;
+    border:5px black solid;
+    padding:20px;
+    color: #4073ff;
+    font-size: 3vw;
+    font-family: filicudi-solid, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    transition-property:opacity;
+    transition-duration:1s;  
+}
+.countdown {
+    font-family: "Press Start 2P", cursive;
+}
+#count {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    color: #F5CF94;
+    font-size: 50px;
+    z-index: 999;
+    font-family: filicudi-striped, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.yes {
+    background-color: #F5CF94;
+    border: none;
+    color: #889ACC;
+    padding: 0.6vw 1.4vw;
+    text-align: center;
+    margin: 0 0 0 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-family: filicudi-solid, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1vw;
+    transition: 0.3s;
+    opacity: 0.75;
+}
+
+.yes:hover {
+    opacity: 1;
+}
+
+.hellyes {
+    background-color: #FCEAAE;
+    border: none;
+    color: #67B6B4;
+    text-align: center;
+    margin: 0 0 0 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1vw;
+    padding: 0.6vw 1.4vw;
+    font-family: filicudi-solid, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    transition: 0.3s;
+    opacity: 0.75;
+}
+
+.hellyes:hover {
+    opacity: 1;
+}
+.no {
+    background-color: #70A7C7;
+    border: none;
+    margin: 0 0 0 10px;
+    color: #FCEAAE;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+    opacity: 0.75;
+    font-family: filicudi-solid, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1vw;
+    padding: 0.6vw 1.4vw;
+}
+.no:hover {
+    opacity: 1;
+}
+
+.no_rem {
+    background-color: #67B6B4; /* Green */
+    border: none;
+    margin: 0 0 0 10px;
+    color: #E4AEC6;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+    opacity: 0.75;
+    font-family: filicudi-solid, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1vw;
+    padding: 0.6vw 1.4vw;
+}
+.no_rem:hover {
+    opacity: 1;
+}
+
+.next10 {
+    background-color: #e7e7e7; /* Green */
+    border: none;
+    color: #555555;
+    padding: 10px 21px;
+    text-align: center;
+    margin: 0 0 0 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    transition: 0.3s;
+    opacity: 0.75;
+    display: none;
+    font-family: filicudi-solid, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1vw;
+    padding: 0.6vw 1.4vw;
+}
+
+#content {
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.vue-grid-layout {
+    background: transparent;
+    margin: 20px 0 0 0;
+}
+/* 
+.layoutJSON {
+background: #ddd;
+border: 1px solid black;
+margin-top: 10px;
+padding: 10px;
+}
+*/
+/* .eventsJSON {
+background: #ddd;
+border: 1px solid black;
+margin-top: 10px;
+padding: 10px;
+height: 100px;
+overflow-y: scroll;
+} */
+
+/* .columns {
+-moz-columns: 120px;
+-webkit-columns: 120px;
+columns: 120px;
+} */
+
+.vue-grid-item:not(.vue-grid-placeholder) {
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    /*     align-items:center; */
+    /*     border: 1px solid black; */
+}
+
+.vue-grid-item img {
+    width: 100%;
+    height: 100%;
+/*    border:5px white solid; */
+    box-sizing: border-box;
+    /*   height: calc(100% - 10px); */
+    border-radius: 5px;
+    object-fit: cover;
+    z-index: -100;
+    filter: invert(0%);
+    transition-property: filter;
+    transition-delay: 0s;
+    transition-duration: 6.5s;
+    transition-timing-function: ease-in;
+    /*   opacity:1;
+    transition-property: opacity;
+    transition-delay: 0s;
+    transition-duration:0.5s;
+    transition-timing-function: ease-in; */
+}
+
+/* .vue-grid-item img:hover{
+filter:saturate(800%);
+} */
+
+@keyframes opacitychange {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.vue-grid-item.resizing {
+    opacity: 0.5;
+}
+
+.vue-grid-item.static {
+    background: lightblue;
+}
+
+.vue-grid-item .text {
+    font-family: calibri;
+    font-size: 24px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.vue-grid-item .no-drag {
+    height: 100%;
+    width: 100%;
+}
+
+.vue-grid-item .minMax {
+    font-size: 1px;
+}
+
+.vue-grid-item .add {
+    cursor: pointer;
+}
+
+.vue-draggable-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 0;
+    left: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>")
+        no-repeat;
+    background-position: bottom right;
+    padding: 0 8px 8px 0;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+    .yes,
+    .no,
+    .hellyes,
+    .no_rem {
+        display: none;
+    }
+    .vue-grid-layout {
+        margin-top: 0px;
+    }
+    .next10 {
+        display: inline-block;
+    }
+}

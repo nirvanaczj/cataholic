@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>A website for Cataholic🐈</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <link rel="stylesheet" href="https://use.typekit.net/ygu8mmu.css">
+  <link rel="icon" href="https://i.imgur.com/h917uzj.png" type="image/gif" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap"
+    rel="stylesheet"
+  />
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
+
+  <body>
+    <div id="app" style="width: 100%;">
+      <div>
+        <!--<div class="layoutJSON">
+        Displayed as <code>[x, y, w, h]</code>:
+        <div class="columns">
+            <div class="layoutItem" v-for="item in layout">
+                <b>{{item.i}}</b>: [{{item.x}}, {{item.y}}, {{item.w}}, {{item.h}}]
+            </div>
+        </div>
+    </div> -->
+      </div>
+      <div id="content">
+        <!-- <button @click="decreaseWidth">Decrease Width</button>
+    <button @click="increaseWidth">Increase Width</button> -->
+
+        <!--     <input type="checkbox" v-model="draggable"/> Draggable
+    <input type="checkbox" v-model="resizable"/> Resizable -->
+        <h1>Are you a <span style="color:#F5CF94;font-family: 'Luckiest Guy', cursive;">Cat</span>aholic?</h1>
+        <h4>"It's like an alcoholic, but with cats."</h4>
+        <button class="hellyes" @click="addItem10">
+          Hell YES!!!
+        </button>
+        <button class="yes" @click="addItem">Yes</button>
+        <!--   <button class="yes" @click="addItemTEST">testButton</button> -->
+        <button class="no_rem" @click="removeItem">No</button>
+        <button class="no" @click="gonext">Hell NO!</button>
+        <button class="next10" @click="function(){this.location.reload()}">
+          next10<br />(View on desktop for better experience)
+        </button>
+        <br />
+        <grid-layout
+          :layout.sync="layout"
+          :col-num="12"
+          :row-height="30"
+          :is-draggable="draggable"
+          :is-resizable="resizable"
+          :vertical-compact="true"
+          :use-css-transforms="true"
+          :responsive="true"
+        >
+          <grid-item
+            v-for="item in layout"
+            :static="item.static"
+            :x="item.x"
+            :y="item.y"
+            :w="item.w"
+            :h="item.h"
+            :i="item.i"
+            :id="item.i"
+          >
+            <div class="thenew"></div>
+            <!-- <img src="https://i.pinimg.com/originals/42/d0/0c/42d00cfaf2cedabc7eac44e94d390c49.jpg"> -->
+            <!-- <img v-bind:src="itemImg1(item)"> -->
+            <!-- <span class="text">{{itemTitle(item)}}</span> -->
+          </grid-item>
+        </grid-layout>
+      </div>
+      <div id="count"></div>
+      <div id="destroy">
+        THE WORLD IS GETTING DESTROYED IN <span class="countdown"></span>
+      </div>
+      <div class="notification">
+        Hooman, You just saved the world
+      </div>
+      <div class="confirm">
+        Hooman, you must really love cat, <br>wanna check out the world cutest kitty??!<br>
+        <button class="yes" @click="godonut">Yes</button>
+        <button class="no_rem" @click="disappearconfirm">No</button>
+      </div>
+      
+      <div class="confirmhell">
+        <div id ="questioning" style="font-family: filicudi-solid, sans-serif;">
+          
+        Hooman, are you sure??<br><br></div>
+        <button class="yes" @click="gonext">Yes?</button>
+        <button class="no_rem" @click="disappearconfirmhell">Nahh, how can I reject cutie like you?</button>
+      </div>
+      
+      
+      <div id="hellno">
+        <img
+          style="width:30%"
+          src="https://media.giphy.com/media/oifpynHiSjtMA/giphy.gif"
+        />
+      </div>
+
+      <!-- test -->
+      <div id="inv"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+      async function fall() {
+        for (var i = 0; i < 20; i++) {
+          const response = await fetch(`https://aws.random.cat/meow`);
+          const json = await response.json();
+          const pic = json["file"];
+          document
+            .querySelectorAll(".vue-grid-item")
+            [i].insertAdjacentHTML("beforeend", `<img src=${pic}>`);
+          // console.log('@@@@',pic)
+        }
+      }
+
+      async function fspecify(num) {
+        const response = await fetch(`https://aws.random.cat/meow`);
+        const json = await response.json();
+        const pic = json["file"];
+        // var img = new Image();
+        // img.onload = function() {
+        //   var width = this.width
+        //   var height = this.height
+        //   var scale = height/width;
+        //   console.log(scale)
+        //   var gridWidth = parseInt(document.querySelectorAll('.vue-grid-item')[num].style.width.slice(0,-2))
+        //   var originalHeight = parseInt(document.querySelectorAll('.vue-grid-item')[num].style.height.slice(0,-2))
+        //   console.log('original height',originalHeight)
+        //   var newheight = gridWidth * scale
+        //   var newwidth = originalHeight/scale
+        //   console.log('new height', `${newheight}px`)
+        //   // document.querySelectorAll('.vue-grid-item')[num].style.width = `${newwidth}px`
+        //   // document.querySelectorAll('.vue-grid-item')[num].style.height = `${newheight}px`
+        // }
+        // img.src = pic;
+        // document.querySelectorAll(".vue-grid-item")
+        //   [num].insertAdjacentHTML(
+        //     "beforeend",
+        //     `<img style="opacity:0; animation:opacitychange 1.2s linear" class ="new" src=${pic}>`
+        //    // `<img src=${pic}>`
+        //   );
+        document.querySelectorAll(".vue-grid-item")[num].querySelector(".thenew").innerHTML = `<img style="opacity:0; animation:opacitychange 1.2s linear" class ="new" src=${pic}>`
+        setTimeout(function() {
+        var allnew = document.querySelectorAll(".new")
+        for (var i = 0 ; i < allnew.length ; i ++ ) {
+          allnew[i].style.opacity="1"
+        }
+        //   document.querySelectorAll(".new").style.opacity = "1";
+        }, 200);
+        console.log("@@@@", pic);
+      }
+
+      async function fspecifywithscale(num, that) {
+        const response = await fetch(`https://aws.random.cat/meow`);
+        const json = await response.json();
+        const pic = json["file"];
+        var img = new Image();
+        img.src = pic;
+        img.onload = function() {
+          var width = this.width;
+          var height = this.height;
+          var scale = height / width;
+          console.log(this);
+        };
+        // var xcoor = (2*Math.round(Math.random()*5))
+        // console.log(this.width)
+        // var ycoor = Math.ceil(Math.random()*10)
+        // // var designatedHeight = Math.floor(randomWidth * scale)
+        // var item = {"x":xcoor,"y":ycoor,"w":2,"h":4 + (2*Math.floor(Math.random()*2)),"i":this.index+"", whatever: "bbb"};
+        // this.index++;
+        // this.layout.push(item);
+        // fspecify(this.index-1);
+        // document.querySelector('#count').innerHTML = `Combo:${this.index-20}`
+      }
+
+      // async function returnscaleimg(num){
+      //   const response = await fetch(`https://aws.random.cat/meow`)
+      //   const json = await response.json()
+      //   const pic = json['file']
+      //   var img = new Image();
+      // img.onload = function() {
+      //   var width = this.width
+      //   var height = this.height
+      //   var scale = height/width;
+      //   console.log(scale)
+      //     var gridWidth = parseInt(document.querySelectorAll('.vue-grid-item')[num].style.width.slice(0,-2))
+      //     var originalHeight = parseInt(document.querySelectorAll('.vue-grid-item')[num].style.height.slice(0,-2))
+      //     console.log('original height',originalHeight)
+      //     var newheight = gridWidth * scale
+      //     var newwidth = originalHeight/scale
+      //     console.log('new height', `${newheight}px`)
+      //     // document.querySelectorAll('.vue-grid-item')[num].style.width = `${newwidth}px`
+      //     // document.querySelectorAll('.vue-grid-item')[num].style.height = `${newheight}px`
+      //     }
+      //     img.src = pic;
+      //     return [ scale , img ]
+      //   // document.querySelectorAll('.vue-grid-item')[num].insertAdjacentHTML('beforeend',`<img style="opacity:0; animation:opacitychange 1.5s linear" class ="new" src=${pic}>`)
+      //   // setTimeout(function(){document.querySelectorAll('.new')[num-20].style.opacity = "1"},100)
+      //   // console.log('@@@@',pic)
+      // }
+
+      var testLayout = [
+        { x: 0, y: 0, w: 2, h: 8, i: "0", static: false },
+        { x: 2, y: 0, w: 2, h: 6, i: "1", static: false },
+        { x: 4, y: 0, w: 2, h: 6, i: "2", static: false },
+        { x: 6, y: 0, w: 2, h: 9, i: "3", static: false },
+        { x: 8, y: 0, w: 2, h: 8, i: "4", static: false },
+        { x: 10, y: 0, w: 2, h: 6, i: "5", static: false },
+        { x: 0, y: 5, w: 2, h: 7, i: "6", static: false },
+        { x: 2, y: 5, w: 2, h: 7, i: "7", static: false },
+        { x: 4, y: 5, w: 2, h: 7, i: "8", static: false },
+        { x: 6, y: 3, w: 2, h: 6, i: "9", static: false },
+        { x: 8, y: 4, w: 2, h: 6, i: "10", static: false },
+        { x: 10, y: 4, w: 2, h: 8, i: "11", static: false },
+        { x: 0, y: 10, w: 2, h: 7, i: "12", static: false },
+        { x: 2, y: 10, w: 2, h: 10, i: "13", static: false },
+        { x: 4, y: 8, w: 2, h: 10, i: "14", static: false },
+        { x: 6, y: 8, w: 2, h: 10, i: "15", static: false },
+        { x: 8, y: 10, w: 2, h: 8, i: "16", static: false },
+        { x: 10, y: 4, w: 2, h: 6, i: "17", static: false },
+        { x: 0, y: 9, w: 2, h: 10, i: "18", static: false },
+        { x: 2, y: 6, w: 2, h: 8, i: "19", static: false }
+      ];
+
+      var GridLayout = VueGridLayout.GridLayout;
+      var GridItem = VueGridLayout.GridItem;
+
+      new Vue({
+        el: "#app",
+        components: {
+          GridLayout: GridLayout,
+          GridItem: GridItem
+        },
+        data: {
+          layout: testLayout,
+          draggable: true,
+          resizable: true,
+          index: 0,
+          clicktime:0,
+          results: []
+        },
+
+        mounted: function() {
+          this.index = this.layout.length;
+        },
+
+        created() {
+          fall();
+        },
+
+        methods: {
+          gonext(){
+            console.log(this.clicktime)
+            if(this.clicktime === 0){
+              TweenMax.to(".confirmhell", 2.5, {ease: Elastic.easeOut.config(1, 0.3), x: '110vw' })
+              this.clicktime++
+            }
+            else if(this.clicktime === 1){
+              document.querySelector('.confirmhell').querySelector('#questioning').innerHTML = "Hooman, aren't we cute??? <br/> are you sure you don't want to be a cataholic?"
+              this.clicktime ++
+            }
+            else if (this.clicktime === 2){
+              document.querySelector('.confirmhell').querySelector('#questioning').innerHTML = "Hooman, THIS IS YOUR LAST CHANCE, <br/>ARE YOU SURE?"
+              this.clicktime ++
+            }
+            else if (this.clicktime === 3){
+              this.disappearconfirmhell()
+              this.evil()
+            }
+          },
+          godonut(){
+            window.open("https://donutprototype.glitch.me");
+          },
+          disappearconfirm(){
+            document.querySelector('.confirm').style.opacity = 0
+            setTimeout(function(){
+              document.querySelector('.confirm').style.display = 'none'
+            },1000)
+          },
+          
+          disappearconfirmhell(){
+            this.clicktime = 0
+            TweenMax.to(".confirmhell", 1, {ease: Power4.easeOut, x: '0vw' })
+//            document.querySelector('.confirmhell').style.opacity = 0
+//            setTimeout(function(){
+//              document.querySelector('.confirmhell').style.display = 'none'
+//            },1000)
+          },
+          itemTitle(item) {
+            var result = item.i;
+            if (item.static) {
+              result += " - Static";
+            }
+            return result;
+          },
+
+          itemImg1(item) {
+            var num = item.i;
+          },
+
+          evil() {
+            var catimg = document.querySelectorAll("img");
+            var button = document.querySelectorAll("button");
+            var title = document.querySelector("h1");
+            var subtitle = document.querySelector("h4");
+            var grids = document.querySelector(".vue-grid-layout");
+            var destroy = document.querySelector("#destroy");
+            var countdown = document.querySelector(".countdown");
+            var hellno = document.querySelector("#hellno");
+            var combo = document.querySelector("#count");
+            var body = document.body;
+            // document.querySelector('body').style.background = 'white'
+            // if (window.confirm("Hooman, are you sure??")) {
+            //   if (
+            //     window.confirm(
+            //       "Hooman, aren't we cute??? are you sure you don't want to be a cataholic?"
+            //     )
+            //   ) {
+            //     if (
+            //       window.confirm(
+            //         "Hooman, THIS IS YOUR LAST CHANCE, ARE YOU SURE?"
+            //       )
+            //     ) {
+                  for (var i = 0; i < catimg.length; i++) {
+                    catimg[i].style.filter = "invert(100%)";
+                  }
+                  for (var j = 0; j < button.length; j++) {
+                    button[j].style.display = "none";
+                  }
+                  title.style.display = "none";
+                  subtitle.style.display = "none";
+                  combo.style.display = "none";
+                  grids.style.margin = "0";
+                  destroy.style.display = "block";
+                  setTimeout(function() {
+                    countdown.innerHTML = "5";
+                  }, 1000);
+                  setTimeout(function() {
+                    countdown.innerHTML = "4";
+                  }, 2000);
+                  setTimeout(function() {
+                    countdown.innerHTML = "3";
+                  }, 3000);
+                  setTimeout(function() {
+                    countdown.innerHTML = "2";
+                  }, 4000);
+                  setTimeout(function() {
+                    countdown.innerHTML = "1";
+                  }, 5000);
+                  setTimeout(function() {
+                    grids.style.display = "none";
+                    destroy.style.display = "none";
+                    body.style.background = "black";
+                    hellno.style.display = "flex";
+                    for (var i = 0; i < catimg.length; i++) {
+                      catimg[i].style.filter = "invert(0%)";
+                    }
+                  }, 5500);
+                  setTimeout(function() {
+                    hellno.style.display = "none";
+                  }, 7500);
+                  setTimeout(function(){
+                    window.location.assign('https://www.youtube.com/watch?v=StwEoCRwAhc&feature=youtu.be&t=107')
+                  },7800)
+                // }
+//              }
+//            }
+          },
+
+          increaseWidth: function(item) {
+            var width = document.getElementById("content").offsetWidth;
+            width += 20;
+            document.getElementById("content").style.width = width + "px";
+          },
+          decreaseWidth: function(item) {
+            var width = document.getElementById("content").offsetWidth;
+            width -= 20;
+            document.getElementById("content").style.width = width + "px";
+          },
+          removeItem: function(item) {
+            // console.log("### REMOVE " + item.i);
+            this.layout.splice(this.layout.indexOf(item), 1);
+            this.index--;
+            document.querySelector("#count").innerHTML =
+              this.index < 20 ? ` ` : `Combo:${this.index - 20}`;
+          },
+          add10ItemResponsive: function() {
+            var noButton = document.querySelector(".no");
+            noButton.style.display = "none";
+            var gridWidth = document.querySelector("#app").offsetWidth / 6 - 10;
+            var that = this;
+            async function returnscaleimg() {
+              const response = await fetch(`https://aws.random.cat/meow`);
+              const json = await response.json();
+              const pic = json["file"];
+              document.getElementById(
+                "inv"
+              ).innerHTML = `<img class="invimg" style="position:absolute;width:100px; opacity:0;height:100px;top:100px;" src= ${pic}>`;
+            }
+            for (i = 0; i < 10; i++) {
+              returnscaleimg();
+              setTimeout(function() {
+                var newpic = document.getElementsByClassName("invimg")[0].src;
+                var picwidth = document.getElementsByClassName("invimg")[0]
+                  .naturalWidth;
+                var picHeight = document.getElementsByClassName("invimg")[0]
+                  .naturalHeight;
+                var scale = picHeight / picwidth;
+                var xcoor = 2 * Math.ceil(Math.random() * 5);
+                var ycoor = Math.ceil(Math.random() * 10);
+                //338 is the default width of the grid
+                var designatedheightinpx = gridWidth * scale;
+                var designatedheightrow = Math.round(designatedheightinpx / 30);
+                var item = {
+                  x: xcoor,
+                  y: ycoor,
+                  w: 2,
+                  h: designatedheightrow,
+                  i: that.index + "",
+                  static: false
+                };
+                console.log(
+                  "scale",
+                  scale,
+                  "designatedheight",
+                  designatedheightinpx,
+                  "item",
+                  item
+                );
+                that.layout.push(item);
+                that.index++;
+                document
+                  .querySelectorAll(".vue-grid-item")
+                  [that.index - 1].insertAdjacentHTML(
+                    "beforeend",
+                    `<img style="opacity:0; animation:opacitychange 1.5s linear" class ="new" src=${newpic}>`
+                  );
+                setTimeout(function() {
+                  document.querySelectorAll(".new")[
+                    that.index - 21
+                  ].style.opacity = "1";
+                }, 200);
+              }, 100);
+            }
+          },
+
+          addItemResponsive: function() {
+            var gridWidth = document.querySelector("#app").offsetWidth / 6 - 10;
+            console.log("grid width", gridWidth);
+            var that = this;
+            async function returnscaleimg() {
+              const response = await fetch(`https://aws.random.cat/meow`);
+              const json = await response.json();
+              const pic = json["file"];
+              document.getElementById(
+                "inv"
+              ).innerHTML = `<img class="invimg" style="position:absolute;width:100px; opacity:0;height:100px;top:100px;" src= ${pic}>`;
+            }
+            returnscaleimg();
+
+            setTimeout(function() {
+              var newpic = document.getElementsByClassName("invimg")[0].src;
+              var picwidth = document.getElementsByClassName("invimg")[0]
+                .naturalWidth;
+              var picHeight = document.getElementsByClassName("invimg")[0]
+                .naturalHeight;
+              var scale = picHeight / picwidth;
+              var xcoor = 2 * Math.ceil(Math.random() * 5);
+              var ycoor = Math.ceil(Math.random() * 10);
+              //338 is the default width of the grid
+              var designatedheightinpx = gridWidth * scale;
+              var designatedheightrow = Math.round(designatedheightinpx / 30);
+              var item = {
+                x: xcoor,
+                y: ycoor,
+                w: 2,
+                h: designatedheightrow,
+                i: that.index + "",
+                static: false
+              };
+              console.log(
+                "scale",
+                scale,
+                "designatedheight",
+                designatedheightinpx,
+                "item",
+                item
+              );
+              that.layout.push(item);
+              that.index++;
+              document
+                .querySelectorAll(".vue-grid-item")
+                [that.index - 1].insertAdjacentHTML(
+                  "beforeend",
+                  `<img style="opacity:0; animation:opacitychange 1.5s linear" class ="new" src=${newpic}>`
+                );
+              setTimeout(function() {
+                document.querySelectorAll(".new")[
+                  that.index - 21
+                ].style.opacity = "1";
+              }, 200);
+            }, 100);
+
+            document.querySelector("#count").innerHTML = `Combo:${this.index -
+              19}`;
+            if (this.index == 70) {
+              alert("Hooman, you just save the world!!");
+            }
+            if (this.index == 120) {
+              if (
+                window.confirm(
+                  "Hooman, you must really love cat, wanna check out the world most cute kitty??!"
+                )
+              ) {
+                window.open("https://donutprototype.glitch.me");
+              }
+            }
+          },
+
+          addItemwithScaleCallback: function() {
+            var that = this;
+
+            async function fspecifywithscale2(that, callback) {
+              var gridWidth =
+                document.querySelector("#app").offsetWidth / 6 - 10;
+              const response = await fetch(`https://aws.random.cat/meow`);
+              const json = await response.json();
+              const pic = json["file"];
+              var img = new Image();
+              img.src = pic;
+              img.onload = function() {
+                var width = img.width;
+                var height = img.height;
+                var scale = height / width;
+                // console.log('Working with Callback',img)
+                // console.log('Working with Callback width',img.width)
+                var result = [scale, pic];
+                callback(result);
+              };
+            }
+
+            fspecifywithscale2(that, function(result) {
+              var scale = result[0];
+              var pic = result[1];
+              var gridWidth =
+                document.querySelector("#app").offsetWidth / 6 - 10;
+              var xcoor = 2 * Math.round(Math.random() * 5);
+              var ycoor = Math.ceil(Math.random() * 10);
+              var designatedheightinpx = gridWidth * scale;
+              var designatedheightrow = Math.round(designatedheightinpx / 30);
+              var item = {
+                x: xcoor,
+                y: ycoor,
+                w: 2,
+                h: designatedheightrow,
+                i: that.index + "",
+                static: false
+              };
+              console.log(item);
+              that.layout.push(item);
+              that.index++;
+              document
+                .querySelectorAll(".vue-grid-item")
+                [that.index - 1].insertAdjacentHTML(
+                  "beforeend",
+                  `<img style="opacity:1; animation:opacitychange 0.5s linear" class ="new" src=${pic}>`
+                );
+              document.querySelector("#count").innerHTML = `Combo:${that.index -
+                20}`;
+            });
+
+            if (this.index == 70) {
+              alert("Hooman, you just save the world!!");
+            }
+            if (this.index == 120) {
+              if (
+                window.confirm(
+                  "Hooman, you must really love cat, wanna check out the world most cute kitty??!"
+                )
+              ) {
+                window.open("https://donutprototype.glitch.me");
+              }
+            }
+          },
+
+          addItemwithScaleCallback10: function() {
+            var that = this;
+            var button = document.querySelector(".hellyes");
+            button.innerHTML = "Loading";
+            button.disabled = true;
+            setTimeout(function() {
+              button.disabled = false;
+              button.innerHTML = "Hell Yes!!!";
+            }, 5000);
+            async function fspecifywithscale2(that, callback) {
+              var gridWidth =
+                document.querySelector("#app").offsetWidth / 6 - 10;
+              const response = await fetch(`https://aws.random.cat/meow`);
+              const json = await response.json();
+              const pic = json["file"];
+              var img = new Image();
+              img.src = pic;
+              img.onload = function() {
+                var width = img.width;
+                var height = img.height;
+                var scale = height / width;
+                // console.log('Working with Callback',img)
+                // console.log('Working with Callback width',img.width)
+                var result = [scale, pic];
+                callback(result);
+              };
+            }
+
+            var times = 0;
+            var intervalID = setInterval(function() {
+              fspecifywithscale2(that, function(result) {
+                var scale = result[0];
+                var pic = result[1];
+                var gridWidth =
+                  document.querySelector("#app").offsetWidth / 6 - 10;
+                var xcoor = 2 * Math.round(Math.random() * 5);
+                var ycoor = Math.ceil(Math.random() * 10);
+                var designatedheightinpx = gridWidth * scale;
+                var designatedheightrow = Math.round(designatedheightinpx / 30);
+                var item = {
+                  x: xcoor,
+                  y: ycoor,
+                  w: 2,
+                  h: designatedheightrow,
+                  i: that.index + "",
+                  static: false
+                };
+                that.layout.push(item);
+                that.index++;
+                document
+                  .querySelectorAll(".vue-grid-item")
+                  [that.index - 1].insertAdjacentHTML(
+                    "beforeend",
+                    `<img style="opacity:1; animation:opacitychange 0.5s linear" class ="new" src=${pic}>`
+                  );
+                document.querySelector(
+                  "#count"
+                ).innerHTML = `Combo:${that.index - 20}`;
+              });
+
+              if (++times === 10) {
+                window.clearInterval(intervalID);
+              }
+            }, 500);
+
+            //             for(i = 0 ; i < 10 ; i++){
+            //                 fspecifywithscale2(that,function(result){
+            //                 var scale = result[0]
+            //                 var pic = result[1]
+            //                 var gridWidth = (document.querySelector('#app').offsetWidth/6)-10
+            //                 var xcoor = (2*Math.round(Math.random()*5))
+            //                 var ycoor = Math.ceil(Math.random()*10)
+            //                 var designatedheightinpx = gridWidth*scale
+            //                 var designatedheightrow = Math.round(designatedheightinpx/30)
+            //                 var item = {"x":xcoor,"y":ycoor,"w":2,"h":designatedheightrow,"i":that.index+"", static: false}
+            //                 that.layout.push(item)
+            //                 that.index++;
+            //                 document.querySelectorAll('.vue-grid-item')[(that.index - 1)].insertAdjacentHTML('beforeend',`<img style="opacity:1; animation:opacitychange 0.5s linear" class ="new" src=${pic}>`)
+            //                 document.querySelector('#count').innerHTML = `Combo:${that.index-20}`
+            //             })
+            //             }
+
+            if (this.index == 70) {
+              alert("Hooman, you just save the world!!");
+            }
+            if (this.index == 120) {
+              if (
+                window.confirm(
+                  "Hooman, you must really love cat, wanna check out the world most cute kitty??!"
+                )
+              ) {
+                window.open("https://donutprototype.glitch.me");
+              }
+            }
+          },
+
+          addItemwithScale: function() {
+            var that = this;
+            async function fspecifywithscale2(that) {
+              var gridWidth =
+                document.querySelector("#app").offsetWidth / 6 - 10;
+              const response = await fetch(`https://aws.random.cat/meow`);
+              const json = await response.json();
+              const pic = json["file"];
+              var img = new Image();
+              img.src = pic;
+              img.onload = (function(img, that) {
+                setTimeout(function() {
+                  var width = img.width;
+                  var height = img.height;
+                  var scale = height / width;
+                  console.log("Working with Timeout", img);
+                  console.log("Working with Timeout width", img.width);
+
+                  var xcoor = 2 * Math.ceil(Math.random() * 5);
+                  var ycoor = Math.ceil(Math.random() * 10);
+                  var designatedheightinpx = gridWidth * scale;
+                  var designatedheightrow = Math.round(
+                    designatedheightinpx / 30
+                  );
+                  var item = {
+                    x: xcoor,
+                    y: ycoor,
+                    w: 2,
+                    h: designatedheightrow,
+                    i: that.index + "",
+                    static: false
+                  };
+
+                  that.layout.push(item);
+                  that.index++;
+                  document
+                    .querySelectorAll(".vue-grid-item")
+                    [that.index - 1].insertAdjacentHTML(
+                      "beforeend",
+                      `<img style="opacity:1; animation:opacitychange 0.5s linear" class ="new" src=${pic}>`
+                    );
+                  // setTimeout(function(){document.querySelectorAll('.new')[that.index-21].style.opacity = "1"},100)
+                }, 500);
+              })(img, that);
+            }
+
+            fspecifywithscale2(that);
+
+            document.querySelector("#count").innerHTML = `Combo:${this.index -
+              20}`;
+            if (this.index == 70) {
+              alert("Hooman, you just save the world!!");
+            }
+            if (this.index == 120) {
+              if (
+                window.confirm(
+                  "Hooman, you must really love cat, wanna check out the world most cute kitty??!"
+                )
+              ) {
+                window.open("https://donutprototype.glitch.me");
+              }
+            }
+          },
+
+          addItemwithScale10: function() {
+            var that = this;
+            async function fspecifywithscale2(that) {
+              var gridWidth =
+                document.querySelector("#app").offsetWidth / 6 - 10;
+              const response = await fetch(`https://aws.random.cat/meow`);
+              const json = await response.json();
+              const pic = json["file"];
+              var img = new Image();
+              img.src = pic;
+              img.onload = (function(img, that) {
+                setTimeout(function() {
+                  var width = img.width;
+                  var height = img.height;
+                  var scale = height / width;
+                  console.log("Working with Timeout", img);
+                  console.log("Working with Timeout width", img.width);
+
+                  var xcoor = 2 * Math.ceil(Math.random() * 5);
+                  var ycoor = Math.ceil(Math.random() * 10);
+                  var designatedheightinpx = gridWidth * scale;
+                  var designatedheightrow = Math.round(
+                    designatedheightinpx / 30
+                  );
+                  var item = {
+                    x: xcoor,
+                    y: ycoor,
+                    w: 2,
+                    h: designatedheightrow,
+                    i: that.index + "",
+                    static: false
+                  };
+
+                  that.layout.push(item);
+                  that.index++;
+                  document.querySelector(
+                    "#count"
+                  ).innerHTML = `Combo:${that.index - 20}`;
+                  document
+                    .querySelectorAll(".vue-grid-item")
+                    [that.index - 1].insertAdjacentHTML(
+                      "beforeend",
+                      `<img style="opacity:1; animation:opacitychange 0.5s linear" class ="new" src=${pic}>`
+                    );
+                  // setTimeout(function(){document.querySelectorAll('.new')[that.index-21].style.opacity = "1"},100)
+                }, 500);
+              })(img, that);
+            }
+
+            // for(i = 0 ; i < 10 ; i++){
+            //   setTimeout(function(){console.log(i)},1000*i)
+            // // setTimeout(function(){fspecifywithscale2(that)},1000*i);
+            // }
+
+            // let counter = 0
+            // while( counter < 10){
+            //   // setTimeout(function(){console.log(1000*counter)},1000*counter)
+            //   // setTimeout(fspecifywithscale2(that),1500*counter)
+            //   fspecifywithscale2(that)
+            //   counter++
+            // }
+
+            if (this.index >= 70) {
+              if (this.index <= 79) {
+                alert("Hooman, you just save the world!!");
+              }
+            }
+            if (this.index >= 120) {
+              if (this.index <= 129) {
+                if (
+                  window.confirm(
+                    "Hooman, you must really love cat, wanna check out the world most cute kitty??!"
+                  )
+                ) {
+                  window.open("https://donutprototype.glitch.me");
+                }
+              }
+            }
+
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 500);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 1000);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 1500);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 2000);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 2500);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 3000);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 3500);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 4000);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 4500);
+            setTimeout(function() {
+              fspecifywithscale2(that);
+            }, 5000);
+          },
+
+          addItem: function() {
+            var noButton = document.querySelector(".no");
+            var xcoor = 2 * Math.round(Math.random() * 5);
+            console.log(this.width);
+            var ycoor = Math.ceil(Math.random() * 10);
+            // var designatedHeight = Math.floor(randomWidth * scale)
+            var item = {
+              x: xcoor,
+              y: ycoor,
+              w: 2,
+              h: 8 + 2 * Math.floor(Math.random() * 2),
+              i: this.index + "",
+              whatever: "bbb"
+            };
+            this.index++;
+            this.layout.push(item);
+            fspecify(this.index - 1);
+            document.querySelector("#count").innerHTML = `Combo:${this.index -
+              20}`;
+            if (this.index == 70) {
+              noButton.style.display = 'none'
+              TweenMax.to(".notification", 5, { x: '220vw' })
+            }
+            if (this.index == 120) {
+              TweenMax.to(".confirm", 2.5, {ease: Elastic.easeOut.config(1, 0.3), x: '110vw' })
+            }
+          },
+          addItem10: function() {
+            var self = this;
+            var noButton = document.querySelector(".no");
+            // noButton.style.display = "none"
+            
+            //console.log("### LENGTH: " + this.layout.length);
+            for (i = 0; i < 10; i++) {
+              var xcoor = 2 * Math.round(Math.random() * 5);
+              var ycoor = Math.ceil(Math.random() * 10);
+              var item = {
+                x: xcoor,
+                y: ycoor,
+                w: 2,
+                h: 8 + 2 * Math.floor(Math.random() * 2),
+                i: this.index + "",
+                whatever: "bbb"
+              };
+              this.index++;
+              this.layout.push(item);
+              fspecify(this.index - 1);
+              document.querySelector("#count").innerHTML = `Combo:${this.index -
+                20}`;
+            }
+            if (this.index >= 70) {
+              if (this.index <= 79) {
+                noButton.style.display = 'none'
+                TweenMax.to(".notification", 5, { x: '220vw' })
+              }
+            }
+            if (this.index >= 120) {
+              if (this.index <= 129) {
+                TweenMax.to(".confirm", 2.5, {ease: Elastic.easeOut.config(1, 0.3), x: '110vw' })
+              }
+            }
+          }
+        }
+      });
+
+      // function generateLayout() {
+      //     return _.map(_.range(0, 25), function (item, i) {
+      //         var y = Math.ceil(Math.random() * 4) + 1;
+      //         return {
+      //             x: _.random(0, 5) * 2 % 12,
+      //             y: Math.floor(i / 6) * y,
+      //             w: 2,
+      //             h: y,
+      //             i: i.toString(),
+      //             static: Math.random() < 0.05
+      //         };
+      //     });
+      // }
+      // var a = generateLayout()
+      // console.log('@@@@@@@@',a)
+    </script>
+  </body>
+</html>
